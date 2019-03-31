@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>基于Cycle Gan的歌声转换</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="{% static "css/style.css"%}"/>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Acme" rel="stylesheet">
+
+  </head>
+
+  <nav class="navbar navbar-default navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand navbar-inverse" href="index.html"><b>Welcome</b></a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li><a href="https://github.com/liuyuhanalex/Speech-Synthesis" style="color:Violet;"><b>Github</b></a></li>
+      </ul>
+    </div>
+    </div>
+  </nav>
+
+
+  <body class="Top col-xs-12 container-fluid" style="vertical-align: middle">
+
+    <div class="jumbotron" id='Top'>
+      <h1>歌声转换应用</h1>
+      <p>上传新录制的歌曲，用训练好的模型完成两个对应歌者的声音转换！</p>
+      <p><a class="btn btn-primary btn-lg" href="#" role="button">了解更多项目信息</a></p>
+    </div>
+
+    <h2>1.选择歌曲片段并上传
+      <span class="glyphicon glyphicon-headphones" aria-hidden="true"></span></h2>
+
+    <div class="container">
+      <div class="col-md-8 col-md-offset-2">
+        <h3><span class="glyphicon glyphicon-send" aria-hidden="true"></span>
+          请从本地选择去背景乐的wav文件上传</h3>
+        <form method="post" enctype="multipart/form-data">
+	         <!-- COMPONENT START -->
+           {% csrf_token %}
+           <span class="btn btn-default btn-file" id="filechooser">
+           <input type="file" class="fileupload" name="document">
+          </span><br>
+
+	     <!-- COMPONENT END -->
+    	<div class="form-group">
+    		<button type="submit" class="btn btn-primary btn-lg pull-right">确认上传</button>
+    		<button type="reset" class="btn btn-danger btn-lg">重新选择</button>
+    	</div>
+    </form>
+  </div><br>
+
+    <div class="col-md-12">
+      {% if name %}
+        <div class="alert alert-success" role="alert">成功上传文件：{{name}}</div>
+      {% endif %}
+    </div>
+</div>
+    <h2>2.对上传的片段进行转换
+    <span class="glyphicon glyphicon-sort" aria-hidden="true"></span></h2>
+    <!-- Single button -->
+    <h3 id="h3"><span class="glyphicon glyphicon-time" aria-hidden="true"></span>整个转换过程可能会持续几分钟，请耐心等待！</h3>
+    <h3 id="h3"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>请按照您上传的文件正确选择转换方向！</h3>
+    <div class="container">
+      <div class="col-md-8 col-md-offset-2">
+    <form class="" method="get" id ="form">
+      <label class="radio-inline" id="radiolabel">
+        <input type="radio" name="optradio" value="B2A">
+        女声转男声
+        <span class="glyphicon glyphicon-triangle-right" aria-hidden="true">
+      </label>
+      <label class="radio-inline" id="radiolabel"><input type="radio" name="optradio" value="A2B">
+        男声转女声
+        <span class="glyphicon glyphicon-triangle-left" aria-hidden="true">
+      </label>
+      <input type="submit" class="btn btn-primary btn-lg" name="btn" value="开始转换">
+    </form><br>
+    {% if output_file %}
+    <div class="alert alert-primary" role="alert">转换完成！来听听模型转换后的效果吧</div>
+    {% endif %}
+  </div>
+</div>
+
+    <h2>3.转换完成后，音频将在这里显示
+    <span class="glyphicon glyphicon-play-circle" aria-hidden="true"></span></h2>
+      <!-- {% if start == 1 %}
+      <div class="loader"></div>
+      {% endif%} -->
+
+      <div class="container">
+        <div class="col-md-8 col-md-offset-2">
+
+        <div ng-app>
+      {% if output_file %}
+      <audio ng-src="{%static "result.wav" %}" controls></audio>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+        <!-- The Contact Section -->
+        <div class="w3-container w3-content w3-padding-64" style="max-width:800px" id="contact">
+          <h2 class="w3-wide w3-center">CONTACT</h2>
+          <p class="w3-opacity w3-center"><i>Find some bugs? Please let me know!</i></p>
+          <div class="w3-row w3-padding-32">
+            <div class="w3-col m6 w3-large w3-margin-bottom">
+              <i class="fa fa-map-marker" style="width:30px"></i>Worcester Polytechnic Institute<br>
+              <i class="" style="width:30px"></i>100 Institute Road<br>
+              <i class="" style="width:30px"> </i>Worcester, MA | 01609-2280<br>
+            </div>
+            <div class="w3-col m6 w3-large w3-margin-bottom">
+              <i class="fa fa-envelope" style="width:30px"> </i>Yuhan Liu<br>
+              <i class="fa fa-envelope" style="width:30px"> </i>Email: yliu26@wpi.edu<br>
+            </div>
+          </div>
+        </div>
+
+  </body>

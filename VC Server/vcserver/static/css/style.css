@@ -1,0 +1,88 @@
+body{
+  font-family: 'Acme', sans-serif;
+  margin-top: 80px;
+}
+
+#Title{
+  text-align: center;
+  margin-top: 60px;
+  font-size: 60px;
+  margin-bottom: 30px;
+  font-family: 'Acme', sans-serif;
+}
+
+#Top{
+  margin-top: 60px;
+}
+
+#Poster{
+  margin-top: 50px
+}
+
+#PosterTitle{
+  text-align:left;
+  font-family: 'Acme', sans-serif;
+}
+
+#PongIntroduction{
+  text-align: left;
+}
+
+#Introduction{
+  font-size: 20px;
+}
+#pongcapture{
+  margin-top: 30px;
+  margin-left: 20px;
+}
+#Figure{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+#otherpage{
+  color: red;
+}
+.page-header{
+  color: blue;
+}
+#h3{
+  color:blue;
+  text-align: center;
+}
+.loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid blue;
+  border-right: 16px solid green;
+  border-bottom: 16px solid red;
+  border-left: 16px solid pink;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+#form{
+  text-align: center;
+}
+#filechooser{
+  margin-bottom: 20px;
+  font-size: 20px;
+  min-width: 100%;
+  background: white;
+}
+#radiolabel{
+  font-size: 20px;
+  margin-right: 20px;
+}
