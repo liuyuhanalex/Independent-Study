@@ -3,10 +3,10 @@
 Implement CycleGAN for singers voice conversion
 
 ## Cycle GAN Structure
-![Structure Image]()
+![Structure Image](https://github.com/liuyuhanalex/Independent-Study/blob/master/structure.PNG)
 
 ## Web Application
-The application based on the model can be found [here](https://www.tianlaivc.com/)
+The application based on the model can be found [here](http://www.tianlaivc.com/)
 
 
 ## Task List
