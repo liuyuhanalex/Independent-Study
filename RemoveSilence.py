@@ -29,8 +29,8 @@ def convert_32_to_16():
         data,sample_rate = soundfile.read(os.path.join(human_voice_folder,file))
         soundfile.write(os.path.join(human_voice_16,file),data,sample_rate,subtype='PCM_16')
 
-def remove_silence():
-    three_second = 3*1000
+def remove_silence(length):
+    second = length*1000
     i = 0
     for file in os.listdir(human_voice_16):
         sound_obj = AudioSegment.from_wav(os.path.join(human_voice_16,file))
@@ -42,14 +42,14 @@ def remove_silence():
         combined = AudioSegment.empty()
         for chunk in chunks:
             combined+=chunk
-            duration = combined.duration_seconds
-            start = 0
-            while start+3 < duration:
-                segment = combined[start*1000:start*1000+three_second]
-                start = start+3
-                filename = str(i)+'.wav'
-                segment.export(os.path.join(segment_folder,filename),format="wav")
-                i = i+1
+        duration = combined.duration_seconds
+        start = 0
+        while start+length < duration:
+            segment = combined[start*1000:start*1000+second]
+            start = start+length
+            filename = str(i)+'.wav'
+            segment.export(os.path.join(segment_folder,filename),format="wav")
+            i = i+1
 
 def remove_folder(path):
     shutil.rmtree(path)
@@ -71,7 +71,7 @@ if __name__ == "__main__":
     convert_32_to_16()
     # Remove silence and restore
     print('Finish converting 32 bit wav file to 16bit!')
-    remove_silence()
+    remove_silence(4)
     print('Finish removing silence part and segemnt!')
     remove_folder(human_voice_16)
     print('Finish removing the folder!')
