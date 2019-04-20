@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <title>基于Cycle Gan的歌声转换</title>
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="{% static "css/style.css"%}"/>
+    <link rel="stylesheet" href="{% static "css/style0.css"%}"/>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -22,7 +22,7 @@
     <div class="container-fluid">
     <div class="container">
       <div class="navbar-header">
-        <a class="navbar-brand navbar-inverse" href=""><b>中文版本</b></a>
+        <a class="navbar-brand navbar-inverse" href="/"><b>中文版本</b></a>
         <a class="navbar-brand navbar-inverse" href="en.html"><b>English Version</b></a>
       </div>
     </div>
@@ -30,24 +30,25 @@
   </nav>
 
 
-  <body class="Top col-xs-12 container" style="vertical-align: middle;font-family:KaiTi;
+  <body class="Top col-xs-12 container" style="vertical-align: middle;font-family:font-family: 'Open Sans', sans-serif;;
   background-color:#99CCFF;">
 
     <div class="jumbotron text-center" id='Top' style="background:#243665;">
-      <h1 style="color:white">歌声转换应用</h1>
-      <p style="color:#8BD8BD">上传新录制的歌曲，用训练好的模型完成两个对应歌者的声音转换！</p>
-      <p><a class="btn btn-primary btn-lg" href="./result.html" role="button">了解更多项目信息</a></p>
+      <h1 style="color:white">Song Conversion Web Application</h1>
+      <p style="color:#8BD8BD">
+Upload newly recorded songs and complete the sound conversion of two corresponding singers with the trained model!</p>
+      <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more about project information</a></p>
     </div>
 
     <div class="container" style="border-style: outset;background:white;border-radius:20px;">
 
-    <h2>1.选择歌曲片段并上传
+    <h2>1.Select a song clip and upload it
       <span class="glyphicon glyphicon-headphones" aria-hidden="true"></span></h2>
 
     <div class="container" >
       <div class="col-md-8 col-md-offset-2">
         <h3><span class="glyphicon glyphicon-send" aria-hidden="true"></span>
-          请从本地选择去背景乐的wav文件上传</h3>
+          Please select a wav file without background music to upload.</h3>
         <form method="post" enctype="multipart/form-data">
 	         <!-- COMPONENT START -->
            {% csrf_token %}
@@ -57,8 +58,8 @@
 
 	     <!-- COMPONENT END -->
     	<div class="form-group">
-    		<button type="submit" class="btn btn-primary btn-lg pull-right">确认上传</button>
-    		<button type="reset" class="btn btn-danger btn-lg">重新选择</button>
+    		<button type="submit" class="btn btn-primary btn-lg pull-right">Confirm upload</button>
+    		<button type="reset" class="btn btn-danger btn-lg">Reselect</button>
     	</div>
     </form>
   </div><br>
@@ -68,41 +69,35 @@
       {% if name %}
         <div class="alert alert-success" role="alert" style="font-size:20px">成功上传文件：{{name}}</div>
       {% endif %}
-      {% if NoSelectedFile %}
-        <div class="alert alert-danger" role="alert" style="font-size:20px">请先选择需上传的文件！</div>
-      {% endif %}
     </div>
 </div><br>
 
     <div class="container" style="border-style: outset;background:white;border-radius:20px;">
 
-    <h2>2.对上传的片段进行转换
+    <h2>2.Convert the uploaded clip
     <span class="glyphicon glyphicon-sort" aria-hidden="true"></span></h2>
     <!-- Single button -->
-    <h3 id="h3"><span class="glyphicon glyphicon-time" aria-hidden="true"></span>整个转换过程可能会持续几分钟，请耐心等待！</h3>
-    <h3 id="h3"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>请按照您上传的文件正确选择转换方向！</h3>
+    <h3 id="h3"><span class="glyphicon glyphicon-time" aria-hidden="true"></span>The entire conversion process may last for a few minutes, please be patient!</h3>
+    <h3 id="h3"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>Please select the conversion direction correctly according to the file you uploaded!</h3>
     <div class="container">
       <div class="col-md-8 col-md-offset-2">
     <form class="" method="get" id ="form">
       <label class="radio-inline" id="radiolabel">
         <input type="radio" name="optradio" value="B2A">
-        女声转男声
+        Female to male
         <span class="glyphicon glyphicon-triangle-right" aria-hidden="true">
       </label>
       <label class="radio-inline" id="radiolabel"><input type="radio" name="optradio" value="A2B">
-        男声转女声
+        Male to female
         <span class="glyphicon glyphicon-triangle-left" aria-hidden="true">
       </label>
-      <input href="application.html" type="submit" class="btn btn-primary btn-lg" name="btn" value="开始转换">
+      <input href="application.html" type="submit" class="btn btn-primary btn-lg" name="btn" value="Start conversion">
     </form><br>
     {% if Nodatafile %}
-    <div class="alert alert-danger" role="alert" style="font-size:20px">您还没有上传相应文件，请先按要求上传wav文件！</div>
-    {% endif %}
-    {% if NoDirection %}
-    <div class="alert alert-danger" role="alert" style="font-size:20px">您还没有选择转换方向！</div>
+    <div class="alert alert-danger" role="alert" style="font-size:20px">You have not uploaded the corresponding file, please upload the wav file as required!</div>
     {% endif %}
     {% if output_file %}
-    <div class="alert alert-success" role="alert" style="font-size:20px">转换完成！来听听模型转换后的效果吧</div>
+    <div class="alert alert-success" role="alert" style="font-size:20px">The conversion is complete! Come listen to the results of the conversion.</div>
     {% endif %}
   </div>
 </div>
@@ -110,7 +105,7 @@
 
     <div class="container" style="border-style: outset;background:white;border-radius:20px;">
 
-    <h2>3.转换完成后，音频将在这里显示
+    <h2>3.After the conversion is complete, the audio will be displayed here
     <span class="glyphicon glyphicon-play-circle" aria-hidden="true"></span></h2><br>
       <!-- {% if start == 1 %}
       <div class="loader"></div>
@@ -127,7 +122,7 @@
       {% endif %}
     </div><br>
     <form action='' method='GET'>
-      <button type='submit' class="btn btn-warning btn-lg" id='ReDo'>重新选择歌曲片段，上传文件</button>
+      <button type='submit' class="btn btn-warning btn-lg">Reselect song clips and upload files</button>
     </form>
   </div>
 </div><br>
