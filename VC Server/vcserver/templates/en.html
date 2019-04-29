@@ -3,7 +3,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>基于Cycle Gan的歌声转换</title>
+    <title>Voice conversion based on CycleGAN</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="{% static "css/style0.css"%}"/>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -22,7 +22,7 @@
     <div class="container-fluid">
     <div class="container">
       <div class="navbar-header">
-        <a class="navbar-brand navbar-inverse" href="/"><b>中文版本</b></a>
+        <a class="navbar-brand navbar-inverse" href="application.html"><b>中文版本</b></a>
         <a class="navbar-brand navbar-inverse" href="en.html"><b>English Version</b></a>
       </div>
     </div>
@@ -30,14 +30,13 @@
   </nav>
 
 
-  <body class="Top col-xs-12 container" style="vertical-align: middle;font-family:font-family: 'Open Sans', sans-serif;;
+  <body class="Top col-xs-12 container" style="vertical-align: middle;font-family: 'Lato', sans-serif;
   background-color:#99CCFF;">
 
     <div class="jumbotron text-center" id='Top' style="background:#243665;">
-      <h1 style="color:white">Song Conversion Web Application</h1>
-      <p style="color:#8BD8BD">
-Upload newly recorded songs and complete the sound conversion of two corresponding singers with the trained model!</p>
-      <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more about project information</a></p>
+      <h1 style="color:white">Song conversion web application</h1>
+      <p style="color:#8BD8BD">Upload the newly recorded songs and complete the sound conversion of the two corresponding singers with the trained model!</p>
+      <p><a class="btn btn-primary btn-lg" href="./resultEn.html" role="button">Learn more about project information</a></p>
     </div>
 
     <div class="container" style="border-style: outset;background:white;border-radius:20px;">
@@ -48,7 +47,7 @@ Upload newly recorded songs and complete the sound conversion of two correspondi
     <div class="container" >
       <div class="col-md-8 col-md-offset-2">
         <h3><span class="glyphicon glyphicon-send" aria-hidden="true"></span>
-          Please select a wav file without background music to upload.</h3>
+          Please choose and upload a wav file without background music</h3>
         <form method="post" enctype="multipart/form-data">
 	         <!-- COMPONENT START -->
            {% csrf_token %}
@@ -67,7 +66,10 @@ Upload newly recorded songs and complete the sound conversion of two correspondi
 
     <div class="col-md-12">
       {% if name %}
-        <div class="alert alert-success" role="alert" style="font-size:20px">成功上传文件：{{name}}</div>
+        <div class="alert alert-success" role="alert" style="font-size:20px">Successfully upload file：{{name}}</div>
+      {% endif %}
+      {% if NoSelectedFile %}
+        <div class="alert alert-danger" role="alert" style="font-size:20px">Please select the file to upload first!</div>
       {% endif %}
     </div>
 </div><br>
@@ -84,11 +86,11 @@ Upload newly recorded songs and complete the sound conversion of two correspondi
     <form class="" method="get" id ="form">
       <label class="radio-inline" id="radiolabel">
         <input type="radio" name="optradio" value="B2A">
-        Female to male
+        Female to Male
         <span class="glyphicon glyphicon-triangle-right" aria-hidden="true">
       </label>
       <label class="radio-inline" id="radiolabel"><input type="radio" name="optradio" value="A2B">
-        Male to female
+        Male to Female
         <span class="glyphicon glyphicon-triangle-left" aria-hidden="true">
       </label>
       <input href="application.html" type="submit" class="btn btn-primary btn-lg" name="btn" value="Start conversion">
@@ -96,8 +98,11 @@ Upload newly recorded songs and complete the sound conversion of two correspondi
     {% if Nodatafile %}
     <div class="alert alert-danger" role="alert" style="font-size:20px">You have not uploaded the corresponding file, please upload the wav file as required!</div>
     {% endif %}
+    {% if NoDirection %}
+    <div class="alert alert-danger" role="alert" style="font-size:20px">You have not chosen a conversion direction!</div>
+    {% endif %}
     {% if output_file %}
-    <div class="alert alert-success" role="alert" style="font-size:20px">The conversion is complete! Come listen to the results of the conversion.</div>
+    <div class="alert alert-success" role="alert" style="font-size:20px">The conversion is complete! Let’s listen to the effects of the model transformation.</div>
     {% endif %}
   </div>
 </div>
@@ -122,7 +127,7 @@ Upload newly recorded songs and complete the sound conversion of two correspondi
       {% endif %}
     </div><br>
     <form action='' method='GET'>
-      <button type='submit' class="btn btn-warning btn-lg">Reselect song clips and upload files</button>
+      <button type='submit' class="btn btn-warning btn-lg" id='ReDo'>Reselect song clips and upload files</button>
     </form>
   </div>
 </div><br>

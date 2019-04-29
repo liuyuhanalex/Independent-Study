@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Model conversion result demo</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="{% static "css/style.css"%}"/>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Acme" rel="stylesheet">
+
+  </head>
+
+  <nav class="navbar navbar-default navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand navbar-inverse" href="./application.html"><b>中文版本</b></a>
+        <a class="navbar-brand navbar-inverse" href="en.html"><b>English Version</b></a>
+      </div>
+    </div>
+    </div>
+  </nav>
+
+
+  <body class="Top col-xs-12 container" style="vertical-align: middle;font-family: 'Lato', sans-serif;
+  background-color:#EF5455;">
+
+    <div class="jumbotron text-center" id='Top' style="background:#2B3252;">
+      <h1 style="color:#FAD744">Model conversion result demo</h1>
+      <p style="color:#EF5455">Come listen to the results of the trained model conversion!</p>
+      <p><a class="btn btn-danger btn-lg" href="./en.html" role="button">Return to the online conversion page</a></p>
+    </div>
+
+    <div class="container" style="border-style: outset;background:white;border-radius:20px;">
+
+    <h2>1.The original sound of the two singers
+      <span class="glyphicon glyphicon-headphones" aria-hidden="true"></span></h2>
+    <div class="col-md-5" style="margin-left:20px;margin-bottom:20px">
+      <h3>Male singer</font></h3>
+      <audio controls>
+        <source src="./static/result/Male.wav" type="audio/wav">
+            Your browser does not support the audio element.
+          </audio><br>
+    </div>
+    <div class="col-md-5" style="margin-left:20px;margin-bottom:20px">
+      <h3>Female singer</h3>
+      <audio controls>
+        <source src="./static/result/Female.wav" type="audio/wav">
+            Your browser does not support the audio element.
+          </audio><br>
+    </div>
+</div><br>
+
+    <div class="container" style="border-style: outset;background:white;border-radius:20px;">
+
+    <h2>2.Female singer to male singer voice conversion
+    <span class="glyphicon glyphicon-sort" aria-hidden="true"></span></h2>
+    <div class="col-md-5" style="margin-left:20px;margin-bottom:20px">
+      <h3>Female singer</font></h3>
+      <audio controls>
+        <source src="./static/result/1.wav" type="audio/wav">
+            Your browser does not support the audio element.
+          </audio><br>
+    </div>
+    <div class="col-md-5" style="margin-left:20px;margin-bottom:20px">
+      <h3>Conversion result</h3>
+      <audio controls>
+        <source src="./static/result/1-1.wav" type="audio/wav">
+            Your browser does not support the audio element.
+          </audio><br>
+    </div><br>
+    <div class="col-md-5" style="margin-left:20px;margin-bottom:20px">
+      <audio controls>
+        <source src="./static/result/2.wav" type="audio/wav">
+            Your browser does not support the audio element.
+          </audio><br>
+    </div>
+    <div class="col-md-5" style="margin-left:20px;margin-bottom:20px">
+      <audio controls>
+        <source src="./static/result/2-1.wav" type="audio/wav">
+            Your browser does not support the audio element.
+          </audio><br>
+    </div><br>
+
+    <div class="col-md-5" style="margin-left:20px;margin-bottom:20px">
+      <audio controls>
+        <source src="./static/result/3.wav" type="audio/wav">
+            Your browser does not support the audio element.
+          </audio><br>
+    </div>
+    <div class="col-md-5" style="margin-left:20px;margin-bottom:20px">
+      <audio controls>
+        <source src="./static/result/3-1.wav" type="audio/wav">
+            Your browser does not support the audio element.
+          </audio><br>
+    </div>
+  </div><br>
+
+    <div class="container" style="border-style: outset;background:white;border-radius:20px;">
+
+    <h2>3.Male singer to female singer voice conversion
+    <span class="glyphicon glyphicon-sort" aria-hidden="true"></span></h2>
+
+    <div class="col-md-5" style="margin-left:20px">
+      <h3>Male singer</font></h3>
+      <audio controls>
+        <source src="./static/result/5.wav" type="audio/wav">
+            Your browser does not support the audio element.
+          </audio><br>
+    </div>
+    <div class="col-md-5" style="margin-left:20px;margin-bottom:20px">
+      <h3>Conversion result</h3>
+      <audio controls>
+        <source src="./static/result/5-2.wav" type="audio/wav">
+            Your browser does not support the audio element.
+          </audio><br>
+    </div><br>
+    <div class="col-md-5" style="margin-left:20px">
+      <audio controls>
+        <source src="./static/result/6.wav" type="audio/wav">
+            Your browser does not support the audio element.
+          </audio><br>
+    </div>
+    <div class="col-md-5" style="margin-left:20px;margin-bottom:20px">
+      <audio controls>
+        <source src="./static/result/6-2.wav" type="audio/wav">
+            Your browser does not support the audio element.
+          </audio><br>
+    </div><br>
+    <div class="col-md-5" style="margin-left:20px">
+      <audio controls>
+        <source src="./static/result/7.wav" type="audio/wav">
+            Your browser does not support the audio element.
+          </audio><br>
+    </div>
+    <div class="col-md-5" style="margin-left:20px;margin-bottom:20px">
+      <audio controls>
+        <source src="./static/result/7-2.wav" type="audio/wav">
+            Your browser does not support the audio element.
+          </audio><br>
+    </div><br>
+
+  </div><br>
+
+
+
+  <div class="container" style="border-style: outset;background:white;border-radius:20px;">
+
+  <h2>4.Latest results
+  <span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span></h2>
+
+  <div class="col-md-5" style="margin-left:20px">
+    <h3>Male singer</font></h3>
+    <audio controls>
+      <source src="./static/result/M1.wav" type="audio/wav">
+          Your browser does not support the audio element.
+        </audio><br>
+  </div>
+  <div class="col-md-5" style="margin-left:20px;margin-bottom:20px">
+    <h3>Female singer</h3>
+    <audio controls>
+      <source src="./static/result/F1.wav" type="audio/wav">
+          Your browser does not support the audio element.
+        </audio><br>
+  </div><br>
+  <div class="col-md-5" style="margin-left:20px">
+    <audio controls>
+      <source src="./static/result/M2.wav" type="audio/wav">
+          Your browser does not support the audio element.
+        </audio><br>
+  </div>
+  <div class="col-md-5" style="margin-left:20px;margin-bottom:20px">
+    <audio controls>
+      <source src="./static/result/F2.wav" type="audio/wav">
+          Your browser does not support the audio element.
+        </audio><br>
+  </div><br>
+  <div class="col-md-5" style="margin-left:20px">
+    <audio controls>
+      <source src="./static/result/M3.wav" type="audio/wav">
+          Your browser does not support the audio element.
+        </audio><br>
+  </div>
+  <div class="col-md-5" style="margin-left:20px;margin-bottom:20px">
+    <audio controls>
+      <source src="./static/result/F3.wav" type="audio/wav">
+          Your browser does not support the audio element.
+        </audio><br>
+  </div><br><br>
+  </div>
+
+        <!-- The Contact Section -->
+        <div class="w3-container w3-content w3-padding-64" style="max-width:800px;font-family: Comic Sans MS;" id="contact">
+          <h2 class="w3-wide w3-center">CONTACT</h2>
+          <p class="w3-opacity w3-center"><i>Find some bugs? Please let me know!</i></p>
+          <div class="w3-row w3-padding-32">
+            <div class="w3-col m6 w3-large w3-margin-bottom">
+              <i class="fa fa-map-marker" style="width:30px"></i>Worcester Polytechnic Institute<br>
+              <i class="" style="width:30px"></i>100 Institute Road<br>
+              <i class="" style="width:30px"> </i>Worcester, MA | 01609-2280<br>
+            </div>
+            <div class="w3-col m6 w3-large w3-margin-bottom">
+              <i class="fa fa-envelope" style="width:30px"> </i>Yuhan Liu<br>
+              <i class="fa fa-envelope" style="width:30px"> </i>Email: yliu26@wpi.edu<br>
+            </div>
+          </div>
+        </div>
+
+  </body>

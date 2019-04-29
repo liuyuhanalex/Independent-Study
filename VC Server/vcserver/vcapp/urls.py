@@ -8,4 +8,5 @@ urlpatterns = [
     path('en.html',views.applicationEn,name='application'),
     path('application.html',views.application,name='application'),
     path('result.html',views.result,name='application'),
+    path('resultEn.html',views.resultEn,name='application'),
 ]
